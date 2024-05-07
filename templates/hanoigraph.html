@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>user page</title>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <!-- Favicon-->
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="http://127.0.0.1:5000/static/css/graphstyles.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            #Box{
+                padding: 25px;
+                background-color: white;
+                height: auto;
+                margin-top: 150px;
+                color: white !important;
+            }
+            body{
+                background-color: rgb(27, 27, 122);
+            }
+      
+        .sensor-value {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 5px;
+            animation: demo 1s 1s linear infinite alternate;
+        }
+        @keyframes demo {
+            0%{transform: scale(1);}
+            100%{transform: scale(2);}
+        }
+
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!-- <li class="nav-item"><a class="nav-link" href="#page-top">AUTISM</a></li> -->
+                <a class="navbar-brand h1" href="/home">COGNOSCENTE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/patterngraph">pattern</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sudokugraph">Sudoku</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/tetrisgraph">Tetris</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">HANOI</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">ticktack</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackmole</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/feedbackpage">Feedback</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div id="Box">  
+              <div class="row">
+                <div class="info">
+                    <h1 class="graph-title">Tower Of Hanoi</h1>
+                    <hr><br>
+                    <h5>Game Overview:</h5>
+                    <p>The objective of the game is to move a stack of disks from one peg to another, following certain rules. The player needs to move all the disks from the starting peg to one of the other pegs, ensuring that no disk is placed on top of a smaller disk.</p>
+                    <h5>Game Parameters:</h5>
+                    <p><strong>Timer: </strong>The game features a timer that starts when the player makes their first move. The timer records the time taken by the player to solve the puzzle.</p>
+                    <p><strong>Score: </strong>This game doesn't have a traditional score mechanic. However, the player can be evaluated based on the number of moves they make to solve the puzzle.</p>
+                </div>
+                <h5 class="graph-title">Graphs</h5>
+                    <div class="col-lg-6">
+                        <div style="width: 100%;">
+                            <canvas id="myChart1" style="overflow-x: scroll;"></canvas>
+                        </div>   
+                    </div>
+                    <div class="col-lg-6">
+                        <div style="width: 100%;">
+                            <canvas id="myChart2" style="overflow-x: scroll;"></canvas>
+                        </div>   
+                    </div>
+                    <div class="col-lg-6">
+                        <div style="width: 100%;">
+                            <canvas id="myChart3" style="overflow-x: scroll;"></canvas>
+                        </div>   
+                    </div>
+
+                <div class="col-lg-6">
+                    <div style="width: 100%;">
+                        <canvas id="myChart4" style="overflow-x: scroll;"></canvas>
+                    </div>   
+                </div>
+                <p></P>
+                <div class="info">
+                    <h5>Cognitive Skills Enhancement:</h5>
+                    <p><strong>Problem-solving: </strong>Players need to strategize and plan their moves to transfer the stack of disks from one peg to another while adhering to the rules of the game.</p>
+                    <p><strong>Spatial awareness: </strong>Players must have a good understanding of spatial relationships between the disks and pegs to make effective moves.</p>
+                    <p><strong>Memory: </strong>Remembering the current state of the game and planning future moves require memory skills.</p>
+                </div>
+                <div class="info">
+                    <h5>Brainwave Frequencies Targeted:</h5>
+                    <p><strong>Beta Waves (12-38 Hz): </strong>Players may experience increased beta wave activity during intense concentration and problem-solving moments when planning their moves.</p>
+                    <p><strong>Alpha Waves (8-12 Hz): </strong>During moments of relaxation or when contemplating their next move, players may experience an increase in alpha wave activity.</p>
+                    <p><strong>Theta Waves (4-8 Hz): </strong>Players may enter a state of deep concentration and focus when trying to solve particularly challenging puzzles, leading to increased theta wave activity.</p>
+                    <p><strong>Gamma Waves (above 38 Hz): </strong>Moments of insight or when players successfully solve a puzzle may lead to brief spikes in gamma wave activity, associated with higher cognitive functions.</p>
+                </div>
+            </div>  
+
+        <div style="width: 50%;margin: auto;border: 1px solid #ddd;color: #ddd;padding: 25px;">
+            <center><h3>Feedback</h3></center>
+        <hr><br>
+        <form action="/feedbacks" method="post">
+            <input type="text" class="form-control" value="Tower Of Hanoi" name="game" id="game" readonly>
+            <br>
+            <textarea name="feed" id="feed" class="form-control" required rows="2" placeholder="Enter feedback"></textarea>
+            <br>
+            <input type="submit" class="btn btn-success">
+        </form>
+        </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="http://127.0.0.1:5000/static/js/scripts.js"></script>
+        <script>
+            $(document).ready(function() {
+                setInterval(function() {
+                    $.ajax({
+                        url: '/get_hanoi_graph1',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart1').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'hanoi Date v/s Score',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: '/get_hanoi_graph2',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart2').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'hanoi Date v/s timer',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: '/get_hanoi_graph3',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart3').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'hanoi time v/s score',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+                    $.ajax({
+                        url: '/get_hanoi_graph4',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart4').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'hanoi Time v/s Timer',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+                }, 2000); // Refresh every 5 seconds
+            });
+</script>
+
+    </body>
+</html>

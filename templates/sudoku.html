@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sudoku</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://127.0.0.1:5000/static/sudoku/main.css">
+    </head>
+    <body>
+        <div id="container">
+            <div id="timer-container">
+                <button id="start">Start</button>
+                <button id="stop">Stop</button>
+                <span id="timer">00:00:00</span>
+            </div>
+            <div id="board">
+                <span id="message"></span>
+                <button id="check">Check</button>
+                <span id="incorrect-entries">Mistakes: 0</span>
+                <span id="progress">Progress: 0%</span>
+            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr> 
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr> 
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                        <td><input type="text" maxlength="1" min=1 class="content"></td>
+                    </tr> 
+                </tbody>
+            </table>
+        </div>
+        <script src="http://127.0.0.1:5000/static/sudoku/main.js"></script>
+    </body>
+</html>

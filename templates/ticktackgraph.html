@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>user page</title>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <!-- Favicon-->
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            #Box{
+                padding: 25px;
+                background-color: white;
+                height: auto;
+                margin-top: 150px;
+                color: white !important;
+            }
+            body{
+                background-color: rgb(27, 27, 122);
+            }
+      
+        .sensor-value {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 5px;
+            animation: demo 1s 1s linear infinite alternate;
+        }
+        @keyframes demo {
+            0%{transform: scale(1);}
+            100%{transform: scale(2);}
+        }
+
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <!-- <li class="nav-item"><a class="nav-link" href="#page-top">AUTISM</a></li> -->
+                <a class="navbar-brand h1" href="/home">COGNOSCENTE</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/patterngraph">Pattern</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/sudokugraph">Sudoku</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/tetrisgraph">Tetris</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">HANOI</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">ticktack</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackmole</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/feedbackpage">Feedback</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="container">
+            <div id="Box">  
+              <div class="row">
+                    <div class="col-lg-6">
+                        <div style="width: 100%;">
+                            <canvas id="myChart1" style="overflow-x: scroll;"></canvas>
+                        </div>   
+                    </div>
+                    <div class="col-lg-6">
+                        <div style="width: 100%;">
+                            <canvas id="myChart2" style="overflow-x: scroll;"></canvas>
+                        </div>   
+                    </div>
+                    <div class="col-lg-6">
+                        <div style="width: 100%;">
+                            <canvas id="myChart3" style="overflow-x: scroll;"></canvas>
+                        </div>   
+                    </div>
+
+                <div class="col-lg-6">
+                    <div style="width: 100%;">
+                        <canvas id="myChart4" style="overflow-x: scroll;"></canvas>
+                    </div>   
+                </div>
+                <div class="col-lg-6">
+                    <div style="width: 100%;">
+                        <canvas id="myChart5" style="overflow-x: scroll;"></canvas>
+                    </div>   
+                </div>
+                <div class="col-lg-6">
+                    <div style="width: 100%;">
+                        <canvas id="myChart6" style="overflow-x: scroll;"></canvas>
+                    </div>   
+                </div>
+            <div class="col-lg-6">
+                <div style="width: 100%;">
+                    <canvas id="myChart7" style="overflow-x: scroll;"></canvas>
+                </div>   
+            </div>
+
+            <div class="col-lg-6">
+                <div style="width: 100%;">
+                    <canvas id="myChart8" style="overflow-x: scroll;"></canvas>
+                </div>   
+            </div>
+      </div>  
+      <div style="width: 50%;margin: auto;border: 1px solid #ddd;color: #ddd;padding: 25px;">
+        <center><h3>Feedback</h3></center>
+    <hr><br>
+    <form action="/feedbacks" method="post">
+        <input type="text" class="form-control" value="tetris" name="game" id="game" readonly>
+        <br>
+        <textarea name="feed" id="feed" class="form-control" required rows="2" placeholder="Enter feedback"></textarea>
+        <br>
+        <input type="submit" class="btn btn-success">
+    </form>
+    </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="http://127.0.0.1:5000/static/js/scripts.js"></script>
+        <script>
+            $(document).ready(function() {
+                setInterval(function() {
+                    $.ajax({
+                        url: '/get_ticktack_graph1',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart1').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Date v/s timer',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: '/get_ticktack_graph2',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart2').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Date v/s wins',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: '/get_ticktack_graph3',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart3').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Date v/s losses',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+                    $.ajax({
+                        url: '/get_ticktack_graph4',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart4').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Date v/s ties',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+                
+                    $.ajax({
+                        url: '/get_ticktack_graph5',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart5').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Time v/s timer',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: '/get_ticktack_graph6',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart6').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Time v/s wins',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+
+                    $.ajax({
+                        url: '/get_ticktack_graph7',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart7').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Time v/s losses',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+                    $.ajax({
+                        url: '/get_ticktack_graph8',
+                        success: function(res) {
+                                    const ctx = document.getElementById('myChart8').getContext('2d');
+                                    const myChart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                            labels: res[0],
+                                            datasets: [{
+                                                label: 'Ticktack Time v/s ties',
+                                                data: res[1],
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            scales: {
+                                                x: {
+                                                    beginAtZero: true
+                                                }
+                                            }
+                                        }
+                                    }
+                                    )
+                                },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+
+                }, 2000); // Refresh every 5 seconds
+            });
+</script>
+
+    </body>
+</html>

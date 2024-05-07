@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(58, 129, 0);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.score, .accuracy, .reaction-time, .duration{
+    font-size: 16px;
+    margin: 2vh 0;
+    font-size: 24px;
+    font-size: 16px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5vw;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.hole {
+    width: 100%;
+    padding-bottom: 100%;
+    background-color: rgb(165, 85, 11);
+    border-radius: 50%;
+    box-shadow: inset 0 10px 0 7px rgb(53, 21, 6),
+                inset 0 20px 20px 15px rgba(0, 0, 0, .3),
+                0 0 5px rgba(0, 0, 0, .5);
+    position: relative;
+    overflow: hidden;
+}
+
+.hole .mole {
+    width: 70%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    animation: rise .3s ease-out;
+}
+
+.cursor {
+    height: 80px;
+    width: 70px;
+    max-height: 110px;
+    max-width: 100px;
+    position: absolute;
+    background-image: url('http://127.0.0.1:5000/static/whackmole/assets/hammer.png');
+    background-size: 100% 100%;
+    transform: translate(-20%, -20%);
+    transition: transform .1s;
+    pointer-events: none;
+}
+
+.cursor.active {
+    transform: translate(-20%, -20%) rotate(-45deg);
+}
+
+.game-btn {
+    display: inline-block; 
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: 2vh 1vw;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+    min-width: 120px;
+}
+
+.game-btn:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+.game-btn:hover:not(:disabled) {
+    background-color: #367c39;
+}
+
+@media (max-width: 768px) {
+    .board {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4vw;
+    }
+
+    .score, .accuracy, .reaction-time {
+        font-size: 5vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .board {
+        width: 90vw;
+        gap: 3vw;
+    }
+
+    .score, .accuracy, .reaction-time {
+        font-size: 6vw;
+    }
+
+    .game-btn {
+        font-size: 4vw;
+        padding: 3vw 4vw;
+    }
+
+    .cursor {
+        height: 20vw;
+        width: 16vw;
+        max-height: 110px;
+        max-width: 100px;
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .score, .accuracy, .reaction-time {
+        font-size: 14px;
+    }
+
+    .game-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .cursor {
+        height: 60px;
+        width: 50px;
+    }
+}
