@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+        <link href="http://127.0.0.1:5000/static/css/graphstyles.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             #Box{
@@ -61,9 +61,9 @@
                         <li class="nav-item"><a class="nav-link" href="/patterngraph">Pattern</a></li>
                         <li class="nav-item"><a class="nav-link" href="/sudokugraph">Sudoku</a></li>
                         <li class="nav-item"><a class="nav-link" href="/tetrisgraph">Tetris</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">HANOI</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">ticktack</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackmole</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">Hanoi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">TicTacToe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackamole</a></li>
                         <li class="nav-item"><a class="nav-link" href="/feedbackpage">Feedback</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
@@ -75,6 +75,32 @@
         <div class="container">
             <div id="Box">  
               <div class="row">
+                <div class="info">
+                    <h1 class="graph-title">Tic Tac Toe</h1>
+                    <hr><br>
+                    <h5>Game Overview:</h5>
+                    <p>The objective of the game is to get three X's or O's in a row, column, or diagonal on a 3x3 grid. The player takes turns with the computer to place their symbol (X or O) on an empty square of the grid. The computer opponent is implemented with varying difficulty levels, making strategic moves based on the chosen level. The game ends when one player achieves a winning combination, or the board is filled without a winner.</p>
+                    <h5>Game Parameters:</h5>
+                    <p><strong>Timer: </strong>The game includes a timer to track the duration of each game session.</p>
+                    <p><strong>Wins: </strong>The game keeps track of the number of wins achieved by the player.</p>
+                    <p><strong>Lossess: </strong>Similarly, it records the number of losses experienced by the player.</p>
+                    <p><strong>Ties: </strong>The game also counts the number of tie games (draws).</p>
+                </div>
+                {% if Type == "admin" %}
+                <form action="/ticktackgraph" method="post">
+                    <select name="name" id="name" required>
+                        <option value="" disabled selected>Select Player</option>
+                        {% for name in names %}
+                            <option value="{{name}}">{{name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit">   
+                    <br></br>
+                </form>
+                {% endif %}
+                <h5 class="graph-title">{{name}} Graphs</h5>
+                <hr>
+                <p class="graph-title">With respect to date:</p>
                     <div class="col-lg-6">
                         <div style="width: 100%;">
                             <canvas id="myChart1" style="overflow-x: scroll;"></canvas>
@@ -96,6 +122,10 @@
                         <canvas id="myChart4" style="overflow-x: scroll;"></canvas>
                     </div>   
                 </div>
+                <br>
+                <br>
+                <hr>
+                <p class="graph-title">With respect to time:</p>
                 <div class="col-lg-6">
                     <div style="width: 100%;">
                         <canvas id="myChart5" style="overflow-x: scroll;"></canvas>
@@ -117,12 +147,27 @@
                     <canvas id="myChart8" style="overflow-x: scroll;"></canvas>
                 </div>   
             </div>
+            <hr>
+            <div class="info">
+                <p></p>
+                <h5>Cognitive Skills Enhancement:</h5>
+                <p><strong>Strategic Thinking: </strong>Players need to anticipate and plan their moves to create winning combinations while preventing their opponent from doing the same.</p>
+                <p><strong>Problem-solving:  </strong>Analyzing the current state of the board and considering potential future moves require problem-solving skills.</p>
+                <p><strong>Pattern Recognition: </strong>Recognizing patterns that lead to winning combinations and adapting strategies based on opponent moves enhances pattern recognition abilities.</p>
+            </div>
+            <div class="info">
+                <h5>Brainwave Frequencies Targeted:</h5>
+                <p><strong>Beta Waves (12-38 Hz): </strong>Players may experience increased beta wave activity during intense concentration and decision-making moments when planning their moves.</p>
+                <p><strong>Alpha Waves (8-12 Hz): </strong>During moments of relaxation or contemplation between moves, players may experience an increase in alpha wave activity.</p>
+                <p><strong>Theta Waves (4-8 Hz): </strong>Deep concentration and focus may lead to increased theta wave activity, especially when analyzing complex game situations.</p>
+                <p><strong>Gamma Waves (above 38 Hz): </strong>Moments of insight or when players successfully identify winning opportunities may lead to brief spikes in gamma wave activity, associated with higher cognitive functions.</p>
+            </div>
       </div>  
       <div style="width: 50%;margin: auto;border: 1px solid #ddd;color: #ddd;padding: 25px;">
         <center><h3>Feedback</h3></center>
     <hr><br>
     <form action="/feedbacks" method="post">
-        <input type="text" class="form-control" value="tetris" name="game" id="game" readonly>
+        <input type="text" class="form-control" value="Tetris" name="game" id="game" readonly>
         <br>
         <textarea name="feed" id="feed" class="form-control" required rows="2" placeholder="Enter feedback"></textarea>
         <br>
@@ -154,7 +199,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Date v/s timer',
+                                                label: 'Timer',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -190,7 +235,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Date v/s wins',
+                                                label: 'Wins',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -226,7 +271,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Date v/s losses',
+                                                label: 'Losses',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -261,7 +306,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Date v/s ties',
+                                                label: 'Ties',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -297,7 +342,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Time v/s timer',
+                                                label: 'Timer',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -333,7 +378,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Time v/s wins',
+                                                label: 'Wins',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -369,7 +414,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Time v/s losses',
+                                                label: 'Losses',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -404,7 +449,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Ticktack Time v/s ties',
+                                                label: 'Ties',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'

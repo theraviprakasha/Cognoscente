@@ -9587,4 +9587,35 @@ left: 50%;
       word-spacing: 2px;
   } 
 }
-  
+/* Styling for the select element */
+select#name {
+  width: 200px; /* Adjust width as needed */
+  padding: 10px;
+  border: 2px solid #CE4771;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #CE4771;
+  background-color: #fff; /* Background color */
+}
+
+/* Styling for the submit button */
+input[type="submit"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #CE4771;
+  color: #fff; /* Text color */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the submit button */
+input[type="submit"]:hover {
+  background-color: #A5A5A5;
+}
+
+/* Center alignment for both elements */
+.container {
+  text-align: center;
+}

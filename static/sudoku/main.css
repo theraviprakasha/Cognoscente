@@ -1,72 +1,139 @@
-#container{
-    margin: 100px auto;
-    max-width: 900px;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    background-image: url("background.jpg");
+    background-repeat: repeat;
+    background-size: 100% ;
 }
+
+#main-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+#game-container {
+    width: 60%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#controls-container {
+    width: 35%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 #timer-container {
     text-align: center;
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
 #timer-container button {
     margin: 0 10px;
+    background-color: #3F8FED;
+    border: none;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
-table{
+
+#timer-container button:hover {
+    background-color: #65CB4C;
+}
+
+table {
     table-layout: fixed;
     width: 100%;
-    min-width: 500px;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
-td{
+
+td {
     width: 10%;
-    padding-top: 10%;
-    /* border: 1px solid #333; */
+    padding: 0;
     position: relative;
 }
-.content{
-    position: absolute;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    text-align: center;
-    /* font-size: 3vw; */
+
+.content {
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
+    padding: 16px;
+    text-align: center;
     border: 3px solid #ccc;
+    font-size: 2em;
+    font-weight: bold;
     transition: all 0.3s;
 }
-.disabled{
+
+.disabled {
     background-color: #ccc;
     color: #48929B;
 }
-.free{
+
+.free {
     background-color: white;
     color: black;
 }
-.wrong{
-    background-color: #F08F90;
+
+.wrong {
+    background-color: #CE4771;
+    color: white;
 }
-.victory{
+
+.victory {
     color: #5bc0eb;
     background-color: #eecbca;
     border: none;
     border-radius: 20px;
 }
-#board{
+
+#board {
     margin-bottom: 20px;
-    min-width: 500px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
-body{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.1em;
-}
-button{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.1rem;
-    background: none;
-    border: 1px solid #333;
+
+#board button {
+    background-color: #3F8FED;
+    border: none;
+    color: #ffffff;
+    padding: 12px 24px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#board button:hover {
+    background-color: #65CB4C;
+}
+
+#message {
+    color: #3F8FED;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#incorrect-entries,
+#progress {
+    color: #CE4771;
+    font-weight: bold;
+    font-size: 18px;
+}
+.textualoutputs {
+    text-align: center;
 }

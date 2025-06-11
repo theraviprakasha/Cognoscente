@@ -1,26 +1,16 @@
 <!DOCTYPE html>
 <html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Sudoku</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://127.0.0.1:5000/static/sudoku/main.css">
-    </head>
-    <body>
-        <div id="container">
-            <div id="timer-container">
-                <button id="start">Start</button>
-                <button id="stop">Stop</button>
-                <span id="timer">00:00:00</span>
-            </div>
-            <div id="board">
-                <span id="message"></span>
-                <button id="check">Check</button>
-                <span id="incorrect-entries">Mistakes: 0</span>
-                <span id="progress">Progress: 0%</span>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sudoku</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/sudoku/main.css">
+</head>
+<body>
+    <div id="main-container">
+        <div id="game-container">
             <table>
                 <tbody>
                     <tr>
@@ -125,6 +115,38 @@
                 </tbody>
             </table>
         </div>
-        <script src="http://127.0.0.1:5000/static/sudoku/main.js"></script>
-    </body>
+        <div id="controls-container">
+            <div id="timer-container">
+                <span id="timer">00:00:00</span>
+                <div class="button-container">
+                    <br>
+                    <button id="start">Start</button>
+                </div>
+                <br>
+                <div class="button-container">
+                    <button id="stop">Stop</button>
+                </div>
+                <br>
+                <div class="button-container">
+                    <button id="check">Check</button>
+                </div>
+                <br>
+                <div>
+                    <span id="incorrect-entries">Mistakes: 0</span>
+                </div>
+                <br>
+                <div>
+                    <span id="progress">Progress: 0%</span>
+                </div>
+                <br>
+                <div>
+                    <span id="message"></span>
+                </div>
+            </div>
+            <div id="board">
+            </div>
+        </div>
+    </div>
+    <script src="http://127.0.0.1:5000/static/sudoku/main.js"></script>
+</body>
 </html>

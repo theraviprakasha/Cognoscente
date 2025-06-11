@@ -11,13 +11,13 @@
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: large;
-        margin: 7em auto;
+        margin: 14% auto;
         padding: 20px;
         width: 123px;
         display: block;
       }
       #start:hover {
-        border: 1px solid #000;
+        border: 1px solid #3F8FED;
       }
       #startDiv {
         margin-left: -9.5em;
@@ -34,7 +34,7 @@
         width: 269px;
       }
       .edge {
-        stroke: #888;
+        stroke: #CE4771;
         stroke-linecap: square;
         stroke-width: 19;
       }
@@ -83,12 +83,13 @@
 
   <body>
     <h1>Tetris</h1>
+    <div class="container">
 
-    <div id="startDiv">
+      <div id="startDiv">
       <button id="start">Start</button>
-    </div>
+      </div>
 
-    <table>
+      <table>
       <tr>
         <td>
           <svg id="board" xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +154,8 @@
           <textarea id="debug" readonly=true cols=12 rows=25 style="font-family: monospace"></textarea>
         </td>
       </tr>
-    </table>
+      </table>
+    </div>
 
     <audio id="crash" src="http://127.0.0.1:5000/static/tetris/common/crash.mp3"></audio>
     <audio id="click" src="http://127.0.0.1:5000/static/tetris/click.mp3"></audio>

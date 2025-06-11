@@ -16,31 +16,31 @@
         border-radius: 5px;
         color: #fff;
         font-size: large;
-        height: 40px;
+        height: 60px;
         margin: 3px;
         outline: none;
-        width: 50px;
+        width: 70px;
       }
       #b1 {
-        background: #D02E2B;
+        background: #CE4771;
       }
       #b1>div {
         background-position: 0 0;
       }
       #b2 {
-        background: #2E5FFF;
+        background: #3F8FED;
       }
       #b2>div {
         background-position: -20px 0;
       }
       #b3 {
-        background: #F0A609;
+        background: #FAE14B;
       }
       #b3>div {
         background-position: -40px 0;
       }
       #b4 {
-        background: #178F47;
+        background: #65CB4C;
       }
       #b4>div {
         background-position: -60px 0;
@@ -63,7 +63,7 @@
         font-size: large;
         margin: 20px auto;
         padding: 20px;
-        width: 123px;
+        width: 140px;
         display: block;
       }
       #start:hover {
@@ -125,38 +125,38 @@
 
   <body>
     <h1>Pattern Matching</h1>
+    <div class="container">
+      <div id="startDiv">
+        <button id="start">Start</button>
+      </div>
 
-    <div id="startDiv">
-      <button id="start">Start</button>
+      <table id="controls">
+        <tr>
+          <td></td>
+          <td><button id="b1"><div></div></button></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><button id="b2"><div></div></button></td>
+          <td><button id="b3"><div></div></button></td>
+          <td><button id="b4"><div></div></button></td>
+        </tr>
+      </table>
+
+      <svg id="timeline" height="20" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <line x1="5%" y1=10 x2="95%" y2=10></line>
+      </svg>
+      <div id="levelDiv">Level: <span id="level">0</span></div>
+
+      <div id="score">Score: <span id="scoreValue">0</span></div>
+
+      <div id="timer">Time: <span id="timerValue">0:00</span></div>
+
+      <div id="averageRecallTime">Average Recall Time: <span id="averageRecallTimeValue">0:00</span></div>
+
+      <p id="instructions">Use the cursor keys or onscreen buttons to repeat the
+      pattern that the computer plays.  Make sure you have sound turned on.</p>
     </div>
-
-    <table id="controls">
-      <tr>
-        <td></td>
-        <td><button id="b1"><div></div></button></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><button id="b2"><div></div></button></td>
-        <td><button id="b3"><div></div></button></td>
-        <td><button id="b4"><div></div></button></td>
-      </tr>
-    </table>
-
-    <svg id="timeline" height="20" width="100%" xmlns="http://www.w3.org/2000/svg">
-      <line x1="5%" y1=10 x2="95%" y2=10></line>
-    </svg>
-    <div id="levelDiv">Level: <span id="level">0</span></div>
-
-    <div id="score">Score: <span id="scoreValue">0</span></div>
-
-    <div id="timer">Time: <span id="timerValue">0:00</span></div>
-
-    <div id="averageRecallTime">Average Recall Time: <span id="averageRecallTimeValue">0:00</span></div>
-
-    <p id="instructions">Use the cursor keys or onscreen buttons to repeat the
-    pattern that the computer plays.  Make sure you have sound turned on.</p>
-
     <audio id="a1" src="http://127.0.0.1:5000/static/pattern/C4.mp3"></audio>
     <audio id="a2" src="http://127.0.0.1:5000/static/pattern/G3.mp3"></audio>
     <audio id="a3" src="http://127.0.0.1:5000/static/pattern/E3.mp3"></audio>

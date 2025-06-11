@@ -8,18 +8,6 @@ cursor = connection.cursor()
 
 command = """CREATE TABLE IF NOT EXISTS user(name TEXT, password TEXT, mobile TEXT, email TEXT)"""
 cursor.execute(command)
-command = """CREATE TABLE IF NOT EXISTS pattern(score TEXT, timer TEXT, level TEXT, average TEXT, date TEXT, time TEXT)"""
-cursor.execute(command)
-command = """CREATE TABLE IF NOT EXISTS sudoku(score TEXT, timer TEXT, mistake TEXT, date TEXT, time TEXT)"""
-cursor.execute(command)
-command = """CREATE TABLE IF NOT EXISTS tetris(score TEXT, level TEXT, line TEXT, date TEXT, time TEXT)"""
-cursor.execute(command)
-command = """CREATE TABLE IF NOT EXISTS ticktack(timer TEXT, wins TEXT, losses TEXT, ties TEXT, date TEXT, time TEXT)"""
-cursor.execute(command)
-command = """CREATE TABLE IF NOT EXISTS hanoi(moves TEXT, timer TEXT, date TEXT, time TEXT)"""
-cursor.execute(command)
-command = """CREATE TABLE IF NOT EXISTS whackhole(score TEXT, accuracy TEXT, reactionTime TEXT, duration TEXT, date TEXT, time TEXT)"""
-cursor.execute(command)
 command = """CREATE TABLE IF NOT EXISTS feedback(Type TEXT, user TEXT, game TEXT, feedback TEXT)"""
 cursor.execute(command)
 
@@ -48,6 +36,23 @@ def userlog():
         if result:
             session['type'] = 'user'
             session['name'] = result[0]
+            session['user'] = result[0]
+
+            connection = sqlite3.connect(session['user']+'.db')
+            cursor = connection.cursor()
+
+            command = """CREATE TABLE IF NOT EXISTS pattern(score TEXT, timer TEXT, level TEXT, average TEXT, date TEXT, time TEXT)"""
+            cursor.execute(command)
+            command = """CREATE TABLE IF NOT EXISTS sudoku(score TEXT, timer TEXT, mistake TEXT, date TEXT, time TEXT)"""
+            cursor.execute(command)
+            command = """CREATE TABLE IF NOT EXISTS tetris(score TEXT, level TEXT, line TEXT, date TEXT, time TEXT)"""
+            cursor.execute(command)
+            command = """CREATE TABLE IF NOT EXISTS ticktack(timer TEXT, wins TEXT, losses TEXT, ties TEXT, date TEXT, time TEXT)"""
+            cursor.execute(command)
+            command = """CREATE TABLE IF NOT EXISTS hanoi(moves TEXT, timer TEXT, date TEXT, time TEXT)"""
+            cursor.execute(command)
+            command = """CREATE TABLE IF NOT EXISTS whackhole(score TEXT, accuracy TEXT, reactionTime TEXT, duration TEXT, date TEXT, time TEXT)"""
+            cursor.execute(command)
             return render_template('allgames.html')
         else:
             return render_template('index.html', msg='Sorry, Incorrect Credentials Provided,  Try Again')
@@ -163,29 +168,101 @@ def hanoi():
 def whackmole():
     return render_template('whackmole.html')
 
-@app.route('/patterngraph')
+@app.route('/patterngraph', methods=['POST', 'GET'])
 def patterngraph():
-    return render_template('patterngraph.html')
+    connection = sqlite3.connect('user_data.db')
+    cursor = connection.cursor()
+    cursor.execute("select * from user")
+    result = cursor.fetchall()
+    names = []
+    for row in result:
+        names.append(row[0])
 
-@app.route('/sudokugraph')
+    if request.method == 'POST':
+        session['user'] = request.form['name']
+        return render_template('patterngraph.html', names=names, Type = session['type'], name=session['user'])
+
+    return render_template('patterngraph.html', Type = session['type'], names=names)
+
+@app.route('/sudokugraph', methods=['POST', 'GET'])
 def sudokugraph():
-    return render_template('sudokugraph.html')
+    connection = sqlite3.connect('user_data.db')
+    cursor = connection.cursor()
+    cursor.execute("select * from user")
+    result = cursor.fetchall()
+    names = []
+    for row in result:
+        names.append(row[0])
 
-@app.route('/tetrisgraph')
+    if request.method == 'POST':
+        session['user'] = request.form['name']
+        return render_template('sudokugraph.html', names=names, Type = session['type'], name=session['user'])
+
+    return render_template('sudokugraph.html', Type = session['type'], names=names)
+
+@app.route('/tetrisgraph', methods=['POST', 'GET'])
 def tetrisgraph():
-    return render_template('tetrisgraph.html')
+    connection = sqlite3.connect('user_data.db')
+    cursor = connection.cursor()
+    cursor.execute("select * from user")
+    result = cursor.fetchall()
+    names = []
+    for row in result:
+        names.append(row[0])
 
-@app.route('/ticktackgraph')
+    if request.method == 'POST':
+        session['user'] = request.form['name']
+        return render_template('tetrisgraph.html', names=names, Type = session['type'], name=session['user'])
+
+    return render_template('tetrisgraph.html', Type = session['type'], names=names)
+
+@app.route('/ticktackgraph', methods=['POST', 'GET'])
 def tickackgraph():
-    return render_template('ticktackgraph.html')
+    connection = sqlite3.connect('user_data.db')
+    cursor = connection.cursor()
+    cursor.execute("select * from user")
+    result = cursor.fetchall()
+    names = []
+    for row in result:
+        names.append(row[0])
 
-@app.route('/hanoigraph')
+    if request.method == 'POST':
+        session['user'] = request.form['name']
+        return render_template('ticktackgraph.html', names=names, Type = session['type'], name=session['user'])
+
+    return render_template('ticktackgraph.html', Type = session['type'], names=names)
+
+@app.route('/hanoigraph', methods=['POST', 'GET'])
 def hanoigraph():
-    return render_template('hanoigraph.html')
+    connection = sqlite3.connect('user_data.db')
+    cursor = connection.cursor()
+    cursor.execute("select * from user")
+    result = cursor.fetchall()
+    names = []
+    for row in result:
+        names.append(row[0])
 
-@app.route('/whackmolegraph')
+    if request.method == 'POST':
+        session['user'] = request.form['name']
+        return render_template('hanoigraph.html', names=names, Type = session['type'], name=session['user'])
+
+    return render_template('hanoigraph.html', Type = session['type'], names=names)
+
+@app.route('/whackmolegraph', methods=['POST', 'GET'])
 def whackmolegraph():
-    return render_template('whackmolegraph.html')
+    connection = sqlite3.connect('user_data.db')
+    cursor = connection.cursor()
+    cursor.execute("select * from user")
+    result = cursor.fetchall()
+    names = []
+    for row in result:
+        names.append(row[0])
+
+    if request.method == 'POST':
+        session['user'] = request.form['name']
+        return render_template('whackmolegraph.html', names=names, Type = session['type'], name=session['user'])
+
+    return render_template('whackmolegraph.html', Type = session['type'], names=names)
 
 @app.route('/update_pattern', methods=['POST'])
 def update_pattern():
@@ -197,7 +274,7 @@ def update_pattern():
     averageRecallTimeValue = data['averageRecallTimeValue']
     level = data['level']
     
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
 
     import datetime
@@ -227,7 +304,7 @@ def update_sudoku():
     score = score.replace('%', '')
     print(timer, score, Mistakes)
 
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
 
     import datetime
@@ -255,7 +332,7 @@ def update_tetris():
     lines = data['lines']
     print(score, level, lines)
     
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
 
     import datetime
@@ -286,7 +363,7 @@ def update_ticktack():
     ties = data['ties']
     ties = ties.replace('Ties: ', '')
 
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
 
     import datetime
@@ -314,7 +391,7 @@ def update_hanoi():
     timer = data['timer']
     timer = timer.replace('Time: ', '')
     
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
 
     import datetime
@@ -345,7 +422,7 @@ def update_whackmole():
     duration = data['duration']
     duration = duration.replace('DURATION: ', '')
 
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
 
     import datetime
@@ -372,7 +449,8 @@ def logout():
 
 @app.route('/get_pattern_graph1')
 def get_pattern_graph1():
-    connection = sqlite3.connect('user_data.db')
+    print(session['user'])
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -385,7 +463,7 @@ def get_pattern_graph1():
 
 @app.route('/get_pattern_graph2')
 def get_pattern_graph2():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -398,7 +476,7 @@ def get_pattern_graph2():
 
 @app.route('/get_pattern_graph3')
 def get_pattern_graph3():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -411,7 +489,7 @@ def get_pattern_graph3():
 
 @app.route('/get_pattern_graph4')
 def get_pattern_graph4():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -424,7 +502,7 @@ def get_pattern_graph4():
 
 @app.route('/get_pattern_graph5')
 def get_pattern_graph5():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -437,7 +515,7 @@ def get_pattern_graph5():
 
 @app.route('/get_pattern_graph6')
 def get_pattern_graph6():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -450,7 +528,7 @@ def get_pattern_graph6():
 
 @app.route('/get_pattern_graph7')
 def get_pattern_graph7():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -463,7 +541,7 @@ def get_pattern_graph7():
 
 @app.route('/get_pattern_graph8')
 def get_pattern_graph8():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -476,7 +554,7 @@ def get_pattern_graph8():
 
 @app.route('/get_hanoi_graph1')
 def get_hanoi_graph1():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -490,7 +568,7 @@ def get_hanoi_graph1():
 
 @app.route('/get_hanoi_graph2')
 def get_hanoi_graph2():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -503,7 +581,7 @@ def get_hanoi_graph2():
 
 @app.route('/get_hanoi_graph3')
 def get_hanoi_graph3():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -511,12 +589,12 @@ def get_hanoi_graph3():
     result = cursor.fetchall()
     for i in result:
         labels1.append(i[3])
-        data1.append(int(float(i[1].replace(':', ''))))
+        data1.append(int(float(i[0])))
     return jsonify([labels1, data1])
 
 @app.route('/get_hanoi_graph4')
 def get_hanoi_graph4():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -529,7 +607,7 @@ def get_hanoi_graph4():
 
 @app.route('/get_tetris_graph1')
 def get_tetris_graph1():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -542,7 +620,7 @@ def get_tetris_graph1():
 
 @app.route('/get_tetris_graph2')
 def get_tetris_graph2():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -555,7 +633,7 @@ def get_tetris_graph2():
 
 @app.route('/get_tetris_graph3')
 def get_tetris_graph3():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -568,7 +646,7 @@ def get_tetris_graph3():
 
 @app.route('/get_tetris_graph4')
 def get_tetris_graph4():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -581,7 +659,7 @@ def get_tetris_graph4():
 
 @app.route('/get_tetris_graph5')
 def get_tetris_graph5():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -594,7 +672,7 @@ def get_tetris_graph5():
 
 @app.route('/get_tetris_graph6')
 def get_tetris_graph6():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -607,7 +685,7 @@ def get_tetris_graph6():
 
 @app.route('/get_sudoku_graph1')
 def get_sudoku_graph1():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -620,7 +698,7 @@ def get_sudoku_graph1():
 
 @app.route('/get_sudoku_graph2')
 def get_sudoku_graph2():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -633,7 +711,7 @@ def get_sudoku_graph2():
 
 @app.route('/get_sudoku_graph3')
 def get_sudoku_graph3():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -646,7 +724,7 @@ def get_sudoku_graph3():
 
 @app.route('/get_sudoku_graph4')
 def get_sudoku_graph4():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -659,7 +737,7 @@ def get_sudoku_graph4():
 
 @app.route('/get_sudoku_graph5')
 def get_sudoku_graph5():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -672,7 +750,7 @@ def get_sudoku_graph5():
 
 @app.route('/get_sudoku_graph6')
 def get_sudoku_graph6():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -686,7 +764,7 @@ def get_sudoku_graph6():
 
 @app.route('/get_ticktack_graph1')
 def get_ticktack_graph1():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -699,7 +777,7 @@ def get_ticktack_graph1():
 
 @app.route('/get_ticktack_graph2')
 def get_ticktack_graph2():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -712,7 +790,7 @@ def get_ticktack_graph2():
 
 @app.route('/get_ticktack_graph3')
 def get_ticktack_graph3():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -725,7 +803,7 @@ def get_ticktack_graph3():
 
 @app.route('/get_ticktack_graph4')
 def get_ticktack_graph4():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -738,7 +816,7 @@ def get_ticktack_graph4():
 
 @app.route('/get_ticktack_graph5')
 def get_ticktack_graph5():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -751,7 +829,7 @@ def get_ticktack_graph5():
 
 @app.route('/get_ticktack_graph6')
 def get_ticktack_graph6():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -764,7 +842,7 @@ def get_ticktack_graph6():
 
 @app.route('/get_ticktack_graph7')
 def get_ticktack_graph7():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -777,7 +855,7 @@ def get_ticktack_graph7():
 
 @app.route('/get_ticktack_graph8')
 def get_ticktack_graph8():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -790,7 +868,7 @@ def get_ticktack_graph8():
 
 @app.route('/get_whackhole_graph1')
 def get_whackhole_graph1():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -803,7 +881,7 @@ def get_whackhole_graph1():
 
 @app.route('/get_whackhole_graph2')
 def get_whackhole_graph2():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -816,7 +894,7 @@ def get_whackhole_graph2():
 
 @app.route('/get_whackhole_graph3')
 def get_whackhole_graph3():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -829,7 +907,7 @@ def get_whackhole_graph3():
 
 @app.route('/get_whackhole_graph4')
 def get_whackhole_graph4():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -842,7 +920,7 @@ def get_whackhole_graph4():
 
 @app.route('/get_whackhole_graph5')
 def get_whackhole_graph5():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -855,7 +933,7 @@ def get_whackhole_graph5():
 
 @app.route('/get_whackhole_graph6')
 def get_whackhole_graph6():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -868,7 +946,7 @@ def get_whackhole_graph6():
 
 @app.route('/get_whackhole_graph7')
 def get_whackhole_graph7():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []
@@ -881,7 +959,7 @@ def get_whackhole_graph7():
 
 @app.route('/get_whackhole_graph8')
 def get_whackhole_graph8():
-    connection = sqlite3.connect('user_data.db')
+    connection = sqlite3.connect(session['user']+'.db')
     cursor = connection.cursor()
     labels1 = []
     data1 = []

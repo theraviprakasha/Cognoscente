@@ -3,7 +3,7 @@
   <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <title>Cognoscente: Tic Tac Toe</title>
-    <link rel="stylesheet" href="http://127.0.0.1:5000/ticktack/static/common/style.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/ticktack/common/style.css">
     <script src="http://127.0.0.1:5000/static/ticktack/common/utils.js"></script>
     <script src="http://127.0.0.1:5000/static/ticktack/ttt.js"></script>
     <style>
@@ -12,7 +12,7 @@
         margin: auto;
       }
       .grid {
-        stroke: #888;
+        stroke: #CE4771;
         stroke-linecap: round;
         stroke-width: 2%;
       }
@@ -45,7 +45,7 @@
         display: none;
       }
       #shield>text {
-        fill: #444;
+        fill: #FAE14B;
         font-family: sans-serif;
         font-size: 200%;
         text-anchor: middle;
@@ -57,18 +57,23 @@
         cursor: pointer;
       }
       #shield>rect {
-        fill: #ccc;
-        opacity: 0.8;
+        fill: #3F8FED;
+        opacity: 1;
       }
     </style>
   </head>
 
   <body>
-    <h1>Cognoscente: Tic Tac Toe</h1>
-    <div id="timer">00:00</div>
-    <div id="wins">Wins: 0</div>
-    <div id="losses">Losses: 0</div>
-    <div id="ties">Ties: 0</div>
+    <br>
+    <br>
+    <div class="container">
+      <div id="timer">00:00</div>
+      <div id="wins">Wins: 0</div>
+      <div id="losses">Losses: 0</div>
+      <div id="ties">Ties: 0</div>
+    </div>
+    <br>
+    <br>
     <svg id="ttt" height="400" width="400" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs>
         <g id="generic-x-cpu" class="x cpu">

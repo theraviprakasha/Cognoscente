@@ -61,9 +61,9 @@
                         <li class="nav-item"><a class="nav-link" href="/patterngraph">Pattern</a></li>
                         <li class="nav-item"><a class="nav-link" href="/sudokugraph">Sudoku</a></li>
                         <li class="nav-item"><a class="nav-link" href="/tetrisgraph">Tetris</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">HANOI</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">ticktack</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackmole</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">Hanoi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">TicTacToe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackamole</a></li>
                         <li class="nav-item"><a class="nav-link" href="/feedbackpage">Feedback</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
@@ -82,9 +82,24 @@
                     <p><strong>Score: </strong>This parameter tracks the player's performance in the game. It increments whenever the player correctly repeats the pattern played by the computer. A higher score indicates better performance and memory recall ability.</p>
                     <p><strong>Timer: </strong>The timer measures the elapsed time since the start of the game. It displays the time in minutes and seconds format, indicating how long the player has been engaged in the game session.</p>
                     <p><strong>Level: </strong>This parameter signifies the current level of the game. The game consists of multiple levels, each progressively increasing in difficulty. As the player successfully completes each level, they advance to the next one.</p>
-                    <p><strong>Score: </strong>This metric calculates the average time it takes for the player to recall and repeat the pattern presented by the computer. It provides insight into the player's cognitive processing speed and memory retention over the course of the game session.</p>
+                    <p><strong>Average Recall Time: </strong>This metric calculates the average time it takes for the player to recall and repeat the pattern presented by the computer. It provides insight into the player's cognitive processing speed and memory retention over the course of the game session.</p>
                 </div>
-                <h5 class="graph-title">Graphs</h5>
+                <br><br>
+                {% if Type == "admin" %}
+                <form action="/patterngraph" method="post">
+                    <select name="name" id="name" required>
+                        <option value="" disabled selected>Select Player</option>
+                        {% for name in names %}
+                            <option value="{{name}}">{{name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit">   
+                    <br></br>
+                </form>
+                {% endif %}
+                <h5 class="graph-title">{{name}} Graphs</h5>
+                <hr>
+                <p class="graph-title">With respect to date:</p>
                     <div class="col-lg-6">
                         <div style="width: 100%;">
                             <canvas id="myChart1" style="overflow-x: scroll;"></canvas>
@@ -100,12 +115,15 @@
                             <canvas id="myChart3" style="overflow-x: scroll;"></canvas>
                         </div>   
                     </div>
-
                 <div class="col-lg-6">
                     <div style="width: 100%;">
                         <canvas id="myChart4" style="overflow-x: scroll;"></canvas>
                     </div>   
                 </div>
+                <br>
+                <br>
+                <hr>
+                <p class="graph-title">With respect to time:</p>
                 <div class="col-lg-6">
                     <div style="width: 100%;">
                         <canvas id="myChart5" style="overflow-x: scroll;"></canvas>
@@ -126,6 +144,7 @@
                     <canvas id="myChart8" style="overflow-x: scroll;"></canvas>
                 </div>   
             </div>
+            <hr>
             <div class="info">
                 <h1 class="graph-title"></h1>
                 <h5>Cognitive Skills Enhancement:</h5>
@@ -139,9 +158,9 @@
                 <h1 class="graph-title"></h1>
                 <h5>Brainwave Frequencies Targeted:</h5>
                 <p>The game's cognitive challenges may influence brainwave activity, particularly in the following frequencies:</p>
-                <p><strong>1. Beta Waves (12-30 Hz):</strong> Increased beta wave activity is associated with focused attention, problem-solving, and cognitive processing, which are essential for succeeding in the game.</p>
-                <p><strong>2. Gamma Waves (30-100 Hz):</strong> Gamma waves are linked to higher mental processes such as memory formation, information processing, and perception, all of which are engaged during gameplay.</p>
-                <p><strong>3. Theta Waves (4-8 Hz):</strong> Theta waves are associated with deep relaxation, creativity, and enhanced learning. While not directly targeted by the game, periods of relaxation between gameplay sessions may facilitate cognitive consolidation and learning.</p>
+                <p><strong>Beta Waves (12-30 Hz):</strong> Increased beta wave activity is associated with focused attention, problem-solving, and cognitive processing, which are essential for succeeding in the game.</p>
+                <p><strong>Gamma Waves (30-100 Hz):</strong> Gamma waves are linked to higher mental processes such as memory formation, information processing, and perception, all of which are engaged during gameplay.</p>
+                <p><strong>Theta Waves (4-8 Hz):</strong> Theta waves are associated with deep relaxation, creativity, and enhanced learning. While not directly targeted by the game, periods of relaxation between gameplay sessions may facilitate cognitive consolidation and learning.</p>
             </div>
       </div>  
       <div style="width: 50%;margin: auto;border: 1px solid #ddd;color: #ddd;padding: 25px;">
@@ -180,7 +199,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Date v/s Score',
+                                                label: 'Score',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -216,7 +235,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Date v/s timer',
+                                                label: 'Timer',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -252,7 +271,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'pattern Date v/s level',
+                                                label: 'Level',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -287,7 +306,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Date v/s average',
+                                                label: 'Average Recall Time',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -323,7 +342,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Time v/s Score',
+                                                label: 'Score',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -359,7 +378,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Time v/s timer',
+                                                label: 'Timer',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -395,7 +414,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'pattern Time v/s level',
+                                                label: 'Level',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -430,7 +449,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Time v/s average',
+                                                label: 'Average Recall Time',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'

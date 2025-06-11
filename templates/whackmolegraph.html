@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="http://127.0.0.1:5000/static/css/styles.css" rel="stylesheet" />
+        <link href="http://127.0.0.1:5000/static/css/graphstyles.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <style>
             #Box{
@@ -61,9 +61,9 @@
                         <li class="nav-item"><a class="nav-link" href="/patterngraph">Pattern</a></li>
                         <li class="nav-item"><a class="nav-link" href="/sudokugraph">Sudoku</a></li>
                         <li class="nav-item"><a class="nav-link" href="/tetrisgraph">Tetris</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">HANOI</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">ticktack</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackmole</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">Hanoi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">TicTacToe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackamole</a></li>
                         <li class="nav-item"><a class="nav-link" href="/feedbackpage">Feedback</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
@@ -75,6 +75,35 @@
         <div class="container">
             <div id="Box">  
               <div class="row">
+                <div class="info">
+                    <h1 class="graph-title">Whack-a-mole</h1>
+                    <hr>
+                    <h5>Game Overview:</h5>
+                    <p>The game is a Whack-a-Mole variant where players must click on moles as they randomly appear in holes. The player's objective is to hit as many moles as possible within a given time frame. Moles spawn randomly, and players must react quickly to click on them before they disappear. The game ends after a certain duration, and players' performance is evaluated based on their score, accuracy, and reaction time.</p>
+                    <h5>Game Parameters:</h5>
+                    <p><strong>Score: </strong>Tracks the player's performance by counting successful hits on moles.</p>
+                    <p><strong>Accuracy: </strong>Measures the player's precision in hitting the moles, calculated as the percentage of successful hits out of total attempts.</p>
+                    <p><strong>Average reaction Time: </strong>Evaluates the player's responsiveness by calculating the average time taken to hit the moles after they appear.</p>
+                    <p><strong>Duration: </strong>Records the total time spent playing the game in each session.</p>
+                </div>
+
+
+                
+                {% if Type == "admin" %}
+                <form action="/whackmolegraph" method="post">
+                    <select name="name" id="name" required>
+                        <option value="" disabled selected>Select Player</option>
+                        {% for name in names %}
+                            <option value="{{name}}">{{name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit">   
+                    <br></br>
+                </form>
+                {% endif %}
+                <h5 class="graph-title">{{name}} Graphs</h5>
+                <hr>
+                <p class="graph-title">With respect to date:</p>
                     <div class="col-lg-6">
                         <div style="width: 100%;">
                             <canvas id="myChart1" style="overflow-x: scroll;"></canvas>
@@ -96,6 +125,10 @@
                         <canvas id="myChart4" style="overflow-x: scroll;"></canvas>
                     </div>   
                 </div>
+                <br>
+                <br>
+                <hr>
+                <p class="graph-title">With respect to time:</p>
                 <div class="col-lg-6">
                     <div style="width: 100%;">
                         <canvas id="myChart5" style="overflow-x: scroll;"></canvas>
@@ -113,15 +146,30 @@
             </div>
             <div class="col-lg-6">
                 <div style="width: 100%;">
-                    <canvas id="myChart7" style="overflow-x: scroll;"></canvas>
+                    <canvas id="myChart8" style="overflow-x: scroll;"></canvas>
                 </div>   
+            </div>
+            <hr>
+            <div class="info">
+                <p></p>
+                <h5>Cognitive Skills Enhancement:</h5>
+                <p><strong>Reaction Time Improvement: </strong>Players must react quickly to hit the moles before they vanish, enhancing their reaction time.</p>
+                <p><strong>Hand-Eye Coordination: </strong>By clicking on moving targets, players improve their hand-eye coordination.</p>
+                <p><strong>Focus and Attention: </strong>Players need to maintain focus and attention to spot moles as they pop up randomly.</p>
+                <p><strong>Decision Making: </strong>Deciding which mole to hit next requires quick decision-making skills.</p>
+            </div>
+            <div class="info">
+                <h5>Brainwave Frequencies Targeted:</h5>
+                <p><strong>Beta Waves (14-30 Hz): </strong>Active during focus, concentration, and decision-making processes, as players need to concentrate and make quick decisions.</p>
+                <p><strong>Gamma Waves (30-100 Hz): </strong>Associated with cognitive processing, memory recall, and perception, as players need to process visual stimuli and recall the locations of moles.</p>
+                <p><strong>Theta Waves (4-8 Hz):</strong>Present during deep relaxation and meditation, but may be engaged during the game's intense concentration and focus phases.</p>
             </div>
       </div>  
       <div style="width: 50%;margin: auto;border: 1px solid #ddd;color: #ddd;padding: 25px;">
         <center><h3>Feedback</h3></center>
     <hr><br>
     <form action="/feedbacks" method="post">
-        <input type="text" class="form-control" value="whackmole" name="game" id="game" readonly>
+        <input type="text" class="form-control" value="Whack-a-mole" name="game" id="game" readonly>
         <br>
         <textarea name="feed" id="feed" class="form-control" required rows="2" placeholder="Enter feedback"></textarea>
         <br>
@@ -153,7 +201,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Date v/s score',
+                                                label: 'Score',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -189,7 +237,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Date v/s accuracy',
+                                                label: 'Accuracy',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -225,7 +273,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'pattern Date v/s reactionTime',
+                                                label: 'Average Raction Time',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -260,7 +308,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Date v/s duration',
+                                                label: 'Duration',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -296,7 +344,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Time v/s score',
+                                                label: 'Score',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -332,7 +380,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Time v/s accuracy',
+                                                label: 'Accuracy',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -368,7 +416,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'pattern Time v/s reactionTime',
+                                                label: 'Average Reaction Time',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -403,7 +451,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Pattern Time v/s duration',
+                                                label: 'Duration',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -428,7 +476,6 @@
                             console.error('Error:', error);
                         }
                     });
-
                 }, 2000); // Refresh every 5 seconds
             });
 </script>

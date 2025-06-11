@@ -1,11 +1,18 @@
 body {
   background-color: #fff;
-  color: #444;
-  font-family: sans-serif;
+  color: #000000;
+  background-image: url("background.jpg");
+  background-repeat: repeat;
+  background-size: 100% ;
+  background-attachment: fixed;
+  color: #000000;
+  margin: 0 auto;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 h1,h2,h3 {
-  font-weight: normal;
+  font-weight: bold;
+  text-align: center;
 }
 
 h1 a {
@@ -37,4 +44,17 @@ body.shake {
   40%, 60% {
     transform: translate(4px, 2px);
   }
+}
+.container{
+  background-color: rgb(255, 255, 255);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+table{
+  font-weight: bold;
+  text-align: center;
 }

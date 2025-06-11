@@ -61,9 +61,9 @@
                         <li class="nav-item"><a class="nav-link" href="/patterngraph">Pattern</a></li>
                         <li class="nav-item"><a class="nav-link" href="/sudokugraph">Sudoku</a></li>
                         <li class="nav-item"><a class="nav-link" href="/tetrisgraph">Tetris</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">HANOI</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">ticktack</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackmole</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hanoigraph">Hanoi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/ticktackgraph">TicTacToe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/whackmolegraph">Whackamole</a></li>
                         <li class="nav-item"><a class="nav-link" href="/feedbackpage">Feedback</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                     </ul>
@@ -85,7 +85,22 @@
                     <p><strong>Level: </strong>The level indicates the stage of progression within the game. As players advance through the game, they typically encounter increasing difficulty, complexity, or new challenges. Advancing to higher levels often requires the player to demonstrate mastery of skills learned in previous levels.</p>
                     <p><strong>Line: </strong>This parameter might refer to various things depending on the context of the game. It could represent the number of lines cleared in a puzzle game like Tetris, the completion of a specific task, or a visual indicator of progress towards a goal.</p>
                 </div>
-                <h5 class="graph-title">Graphs</h5>
+
+                {% if Type == "admin" %}
+                <form action="/tetrisgraph" method="post">
+                    <select name="name" id="name" required>
+                        <option value="" disabled selected>Select Player</option>
+                        {% for name in names %}
+                            <option value="{{name}}">{{name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit">   
+                    <br></br>
+                </form>
+                {% endif %}
+                <h5 class="graph-title">{{name}} Graphs</h5>
+                <hr>
+                <p class="graph-title">With respect to date:</p>
                     <div class="col-lg-6">
                         <div style="width: 100%;">
                             <canvas id="myChart1" style="overflow-x: scroll;"></canvas>
@@ -101,7 +116,10 @@
                             <canvas id="myChart3" style="overflow-x: scroll;"></canvas>
                         </div>   
                     </div>
-
+                    <br>
+                    <br>
+                    <hr>
+                    <p class="graph-title">With respect to time:</p>
                 <div class="col-lg-6">
                     <div style="width: 100%;">
                         <canvas id="myChart4" style="overflow-x: scroll;"></canvas>
@@ -117,6 +135,7 @@
                         <canvas id="myChart6" style="overflow-x: scroll;"></canvas>
                     </div>   
                 </div>
+                <hr>
                 <div class="info">
                     <p></p>
                     <h5>Cognitive Skills Enhancement:</h5>
@@ -168,7 +187,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Tetris Date v/s Score',
+                                                label: 'Score',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -204,7 +223,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Tetris Date v/s level',
+                                                label: 'Level',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -240,7 +259,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Tetris Date v/s line',
+                                                label: 'Line',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -275,7 +294,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Tetris Time v/s Score',
+                                                label: 'Score',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -311,7 +330,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Tetris Time v/s level',
+                                                label: 'Level',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'
@@ -347,7 +366,7 @@
                                         data: {
                                             labels: res[0],
                                             datasets: [{
-                                                label: 'Tetris Time v/s line',
+                                                label: 'Line',
                                                 data: res[1],
                                                 backgroundColor: [
                                                     'rgba(255, 99, 132, 0.2)'

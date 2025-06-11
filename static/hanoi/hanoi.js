@@ -12,8 +12,8 @@
 
 var canvas;
 var ctx;
-var CANVAS_HEIGHT = 512;
-var CANVAS_WIDTH = 1024;
+var CANVAS_HEIGHT = 462;
+var CANVAS_WIDTH = 994;
 var DISK_THICKNESS = 25;
 var VIEW_ANGLE = 10;  // Degrees.
 var RAISE_HEIGHT = DISK_THICKNESS;
